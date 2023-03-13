@@ -1,3 +1,7 @@
+# >>>>>>>>>>>>>>> --- TITLE --- <<<<<<<<<<<<<<<<
+#           This is my first program           #
+# >>>>>>>>>>>>>>> ------------- <<<<<<<<<<<<<<<<
+
 import requests as req
 from tkinter import *
 import ctypes
