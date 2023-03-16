@@ -103,7 +103,7 @@ def weather_in():
     """
     This function activates the "weather_in_text" field
     by transmitting coordinates. Also, it passes the text
-    :param
+    :param:
     :return: None
     """
     # - Language check -
@@ -119,7 +119,7 @@ def weather_in():
 def in_city():
     """
     This function activates the "in_city" field
-    :param
+    :param:
     :return: None
     """
     # - Keys from the dictionary for declension
