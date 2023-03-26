@@ -5,7 +5,7 @@
 import requests as req
 from tkinter import *
 import ctypes
-from cities_database import cities_dict
+from cities_database import file_read
 
 root = Tk()
 
@@ -122,20 +122,17 @@ def in_city():
     :param:
     :return: None
     """
-    # - Keys from the dictionary for declension
-    # of the city name in russian version -
-    keys = cities_dict.keys()
 
     # - Getting a value from "input" field -
     name = value.get()
 
     # - Language check -
     if get_keyboard_layout() == 'ru':
-        # - Getting a value from the dictionary
-        # and passes it to the "city_name" field -
-        if name in keys:
-            result = cities_dict[name]
-            city_name['text'] = result
+        # - Runs the function from the module
+        # and passes the received value to the
+        # "city_name" field -
+        result = file_read(name)
+        city_name['text'] = next(result)
     else:
         city_name['text'] = name
 
