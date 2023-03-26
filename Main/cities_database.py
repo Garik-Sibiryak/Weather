@@ -1,50 +1,37 @@
 """
-    Simple database with a dictionary
-    that contains the declined names
-    of Russian cities for correct
-    spelling in the weather forecast
+    Modul that creates the dictionary with the declined names
+    of Russian cities for correct spelling in the weather forecast.
 """
 
-# --- Lists and dictionary ---#
-keys = []                     #
-values = []                   #
-cities_dict = {}              #
-# ----------------------------#
 
-# --- Extracting the names of the cities from the file -----------------------------#
-with open('Russian_cities.txt', encoding='utf-8') as cdb:                           #
-    read_file = cdb.read()                                                          #
-    clean_text = read_file.replace('\n', ',')                                       #
-    split_text = clean_text.split(',')                                              #
-    keys.append(split_text[0])  # <-----------------------------------------\       #
-    # I didn't find the way to add the first element of the list with cycle__\      #
-# ----------------------------------------------------------------------------------#
+def file_read(city):
+    """
+        This function accepts the parameter "city". It reads .txt
+        file line by line, extracts values by index, passes
+        them to the variables and creates a dictionary. If
+        the dictionary contains the key identical to the value
+        from the accepted parameter, the function returns the value
+        of this key.
+    :param city: accepts the name of a city
+    :return: cities_dict[city]
+    """
 
-# --- Filling the "keys" list with the names
-# of the cities in nominative case -----------#
-count = -1                                    #
-for i in split_text:                          #
-    count += 1                                #
-    if count == 6:                            #
-        keys.append(i)                        #
-        count = 0                             #
-# --------------------------------------------#
+    keys = []
+    values = []
+    cities_dict = {}
 
-# --- Filling the "values" list with the
-# declined names of the cities ----------#
-count_2 = 0                              #
-for i in split_text:                     #
-    count_2 += 1                         #
-    if count_2 == 6:                     #
-        values.append(i)                 #
-        count_2 = 0                      #
-# ---------------------------------------#
+    with open('Russian_cities.txt', encoding='utf-8') as cdb:
+        for i in cdb:
+            t = i.split(',')
+            keys = t[0]
+            values = t[-1]
+            cities_dict = {keys: values}
+            if city in cities_dict:
+                yield cities_dict[city]
 
-# --- Creating the dictionary ----#
-for key in keys:                  #
-    for value in values:          #
-        cities_dict[key] = value  #
-        values.remove(value)      #
-        break                     #
-# --------------------------------#
 
+c = 'Омск'
+p = file_read(c)
+
+if __name__ == "__main__":
+    print(next(p))
